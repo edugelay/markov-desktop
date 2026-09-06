@@ -77,7 +77,7 @@ for dev in "$FAST" "$SLOW"; do
   sgdisk -n2:0:0     -t2:8300 -c2:"bcachefs" "$dev"
 done
 partprobe "$FAST" "$SLOW"
-sleep 2
+udevadm settle
 
 mkfs.vfat -F32 -n BOOT    "${FAST}-part1"
 mkfs.vfat -F32 -n BOOTALT "${SLOW}-part1"
